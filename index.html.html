@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PekoPeko เมนูขนมปัง</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f1e9;
+      color: #4a3c31;
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      background-color: #fffaf2;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd0b4;
+      font-size: 1rem;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 12px;
+      transform: scale(1.2);
+    }
+    input[type="number"] {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    input.topping-qty {
+      width: 30px;
+      padding: 2px 5px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-left: auto;
+    }
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #f6aa1c;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background-color: #d18e14;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #d3c7b1;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #e6d4b8;
+    }
+    #qr-code {
+      margin-top: 20px;
+      text-align: center;
+    }
+    form {
+      margin: 0;
+      padding: 0;
+    }
+    @media screen and (max-width: 600px) {
+      label, button, input[type="number"] {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍞 PekoPeko เมนูขนมปัง</h1>
+
+  <!-- Page 1 -->
+  <div id="page1" class="page active">
+    <form id="breadForm">
+      <label><input type="radio" name="bread" value="ขนมปังนม 20" required> ขนมปังนม - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังนม - น้ำตาล 20"> ขนมปังนม - น้ำตาล - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังช็อคโกแลต 20"> ขนมปังช็อคโกแลต - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังชาไทย 20"> ขนมปังชาไทย - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังคาราเมล 20"> ขนมปังคาราเมล - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังแยมส้ม 20"> ขนมปังแยมส้ม - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังแยมสตอเบอรี่ 20"> ขนมปังแยมสตอเบอรี่ - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังแยมบลูเบอรี่ 20"> ขนมปังแยมบลูเบอรี่ - 20 บาท</label>
+      <label><input type="radio" name="bread" value="ขนมปังนูเทลล่า 30"> ขนมปังนูเทลล่า - 30 บาท</label>
+      <button type="button" id="toTopping">ถัดไป (Next)</button>
+    </form>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page">
+    <form id="toppingForm">
+      <label>
+        <input type="checkbox" name="topping" value="โอรีโอ 5"> โอรีโอ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="โอวัลตินเฟลค 5"> โอวัลตินเฟลค - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="เยลลี่น้ำตาล 5"> เยลลี่น้ำตาล - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="โกโก้ครั้นช์ 5"> โกโก้ครั้นช์ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="คอร์นเฟลกส์ 5"> คอร์นเฟลกส์ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="เยลลี่ 5"> เยลลี่ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="ช็อกโกแลตเรนโบว์ 5"> ช็อกโกแลตเรนโบว์ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="ช็อกโกแลตสติ๊ก 5"> ช็อกโกแลตสติ๊ก - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="มาร์ชแมลโลว์ 5"> มาร์ชแมลโลว์ - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="กล้วย 5"> กล้วย - 5 บาท
+        <input class="topping-qty" type="number" min="1" value="1" />
+      </label>
+      <label>
+        <input type="checkbox" name="topping" value="ไม่ใส่ 0"> ไม่ใส่
+      </label>
+
+      <label>จำนวนขนมปัง: <input type="number" id="breadQuantity" name="breadQuantity" value="1" min="1" required></label>
+
+      <button type="button" id="orderMore">สั่งเพิ่ม (Order More)</button>
+      <button type="button" id="toSummary">สรุปการสั่งซื้อ (Summary)</button>
+    </form>
+  </div>
+
+  <!-- Page 3 -->
+  <div id="page3" class="page">
+    <h2>สรุปการสั่งซื้อ</h2>
+    <table id="orderTable">
+      <thead>
+        <tr>
+          <th>ขนมปัง</th>
+          <th>ท็อปปิ้ง</th>
+          <th>จำนวน</th>
+          <th>ราคา</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button type="button" id="orderMore2">สั่งเพิ่ม (Order More)</button>
+
+    <form id="confirmForm" action="https://formspree.io/f/xeozqaaw" method="POST">
+      <input type="hidden" name="orders" id="ordersData" />
+      <button type="submit" id="confirmOrder">ยืนยันการสั่งซื้อ (Confirm Order)</button>
+    </form>
+
+    <div id="qr-code"></div>
+  </div>
+
+  <script>
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const page3 = document.getElementById('page3');
+    const toToppingBtn = document.getElementById('toTopping');
+    const orderMoreBtn = document.getElementById('orderMore');
+    const orderMore2Btn = document.getElementById('orderMore2');
+    const toSummaryBtn = document.getElementById('toSummary');
+    const breadForm = document.getElementById('breadForm');
+    const toppingForm = document.getElementById('toppingForm');
+    const confirmForm = document.getElementById('confirmForm');
+    let orders = [];
+
+    function showPage(page) {
+      page1.classList.remove('active');
+      page2.classList.remove('active');
+      page3.classList.remove('active');
+      page.classList.add('active');
+    }
+
+    toToppingBtn.addEventListener('click', () => {
+      if (!breadForm.bread.value) {
+        alert('กรุณาเลือกขนมปัง');
+        return;
+      }
+      showPage(page2);
+    });
+
+    orderMoreBtn.addEventListener('click', () => {
+      if (!toppingForm.breadQuantity.value || toppingForm.breadQuantity.value < 1) {
+        alert('กรุณาระบุจำนวนขนมปัง');
+        return;
+      }
+      saveOrder();
+      alert('เพิ่มลงในรายการแล้ว!');
+      showPage(page1);
+      breadForm.reset();
+      toppingForm.reset();
+      toppingForm.breadQuantity.value = 1;
+      resetToppingQty();
+    });
+
+    orderMore2Btn.addEventListener('click', () => {
+      showPage(page1);
+      breadForm.reset();
+      toppingForm.reset();
+      toppingForm.breadQuantity.value = 1;
+      resetToppingQty();
+    });
+
+    toSummaryBtn.addEventListener('click', () => {
+      if (!toppingForm.breadQuantity.value || toppingForm.breadQuantity.value < 1) {
+        alert('กรุณาระบุจำนวนขนมปัง');
+        return;
+      }
+      saveOrder();
+      showSummary();
+      showPage(page3);
+    });
+
+    function resetToppingQty() {
+      const qtyInputs = toppingForm.querySelectorAll('.topping-qty');
+      qtyInputs.forEach(input => input.value = 0);
+    }
+
+    function saveOrder() {
+      const breadSelected = breadForm.bread.value;
+      let toppings = [];
+      const toppingLabels = toppingForm.querySelectorAll('label');
+      toppingLabels.forEach(label => {
+        const checkbox = label.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+          // If "ไม่ใส่" checked, ignore other toppings
+          if (checkbox.value.startsWith("ไม่ใส่")) {
+            toppings = ['ไม่ใส่ 0'];
+            return;
+          }
+          const qtyInput = label.querySelector('.topping-qty');
+          const qty = qtyInput ? parseInt(qtyInput.value) || 0 : 0;
+          if (qty > 0) {
+            toppings.push(checkbox.value.replace(/\d+$/, '').trim() + ' ' + qty);
+          }
+        }
+      });
+      if (toppings.length === 0) toppings = ['ไม่ใส่ 0'];
+      const quantity = parseInt(toppingForm.breadQuantity.value);
+      orders.push({ bread: breadSelected, toppings, quantity });
+    }
+
+    function showSummary() {
+      const tbody = document.querySelector('#orderTable tbody');
+      tbody.innerHTML = '';
+      let totalPrice = 0;
+
+      orders.forEach(order => {
+        const [breadName, breadPriceStr] = [order.bread.split(' ').slice(0, -1).join(' '), order.bread.split(' ').slice(-1)[0]];
+        const breadPrice = parseInt(breadPriceStr);
+        const toppingDescriptions = [];
+        let toppingPriceSum = 0;
+
+        order.toppings.forEach(t => {
+          const parts = t.split(' ');
+          const qty = parseInt(parts.pop());
+          const name = parts.join(' ');
+          // Find the price per topping (default 5 except for "ไม่ใส่" = 0)
+          const toppingPricePerUnit = (name === 'ไม่ใส่') ? 0 : 5;
+          toppingDescriptions.push(`${name} x${qty}`);
+          toppingPriceSum += toppingPricePerUnit * qty;
+        });
+
+        const orderPrice = (breadPrice + toppingPriceSum) * order.quantity;
+        totalPrice += orderPrice;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${breadName}</td><td>${toppingDescriptions.join(', ')}</td><td>${order.quantity}</td><td>${orderPrice}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    confirmForm.addEventListener('submit', e => {
+      let summaryText = '';
+      let totalPrice = 0;
+      orders.forEach(order => {
+        const [breadName, breadPriceStr] = [order.bread.split(' ').slice(0, -1).join(' '), order.bread.split(' ').slice(-1)[0]];
+        const breadPrice = parseInt(breadPriceStr);
+        const toppingList = order.toppings.map(t => {
+          const parts = t.split(' ');
+          const qty = parseInt(parts.pop());
+          const name = parts.join(' ');
+          const toppingPricePerUnit = (name === 'ไม่ใส่') ? 0 : 5;
+          return `- ท็อปปิ้ง: ${name} x${qty} (${toppingPricePerUnit * qty} บาท)`;
+        }).join('\n');
+        const toppingTotal = order.toppings.reduce((acc, t) => {
+          const parts = t.split(' ');
+          const qty = parseInt(parts.pop());
+          const name = parts.join(' ');
+          const toppingPricePerUnit = (name === 'ไม่ใส่') ? 0 : 5;
+          return acc + toppingPricePerUnit * qty;
+        }, 0);
+        const itemTotal = (breadPrice + toppingTotal) * order.quantity;
+        totalPrice += itemTotal;
+        summaryText += `🍞 ${breadName} (${breadPrice} บาท)\n${toppingList}\n- จำนวน: ${order.quantity} ชิ้น\nรวม: ${itemTotal} บาท\n---\n`;
+      });
+      summaryText += `รวมทั้งหมด: ${totalPrice} บาท`;
+      document.getElementById('ordersData').value = summaryText;
+      orders = [];
+    });
+
+    function generateQRCode() {
+      const qrDiv = document.getElementById('qr-code');
+      qrDiv.innerHTML = '';
+      const url = 'https://peko-peko-bread.github.io/peko/';
+      const img = document.createElement('img');
+      img.src = `https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=${encodeURIComponent(url)}`;
+      img.alt = 'QR Code';
+      qrDiv.appendChild(img);
+    }
+
+    generateQRCode();
+  </script>
+
+</body>
+</html>
